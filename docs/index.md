@@ -4,68 +4,68 @@ sidebar: false
 
 hero:
   name: Unplugin
-  text: The Unified<br>Plugin System
-  tagline: Supports Vite, Rollup, webpack, esbuild, and every framework built on top of them.
+  text: 统一的<br>插件系统
+  tagline: 支持 Vite, Rollup, webpack, esbuild 及基于它们构建的每个框架。
   image:
     light: /logo_light.svg
     dark: /logo_dark.svg
     alt: Unplugin
   actions:
     - theme: brand
-      text: Getting Started
+      text: 入门指南
       link: /guide/
     - theme: alt
-      text: Showcase
+      text: 展示
       link: /showcase/
     - theme: alt
-      text: View on GitHub
+      text: 在 GitHub 上查看
       link: https://github.com/unjs/unplugin
 
 features:
   - title: Vite
-    details: Next Generation Frontend Tooling.
+    details: 下一代前端工具。
     link: https://vitejs.dev/
     icon:
       src: /features/vitejs.svg
 
   - title: Rollup
-    details: Next Generation ES module bundler.
+    details: 下一代 ES 模块打包工具。
     link: https://rollupjs.org/
     icon:
       src: /features/rollup.svg
 
   - title: webpack
-    details: A static module bundler for modern JavaScript applications.
+    details: 现代 JavaScript 应用程序的静态模块打包工具。
     link: https://webpack.js.org/
     icon:
       src: /features/webpack.svg
 
   - title: esbuild
-    details: An extremely fast bundler for the web.
+    details: 一个极快的网页打包工具。
     link: https://esbuild.github.io/
     icon:
       src: /features/esbuild.svg
 
   - title: Rspack
-    details: A fast Rust-based web bundler.
+    details: 一个基于 Rust 的快速网页打包工具。
     link: https://www.rspack.dev/
     icon:
       src: /features/rspack.png
 
   - title: Farm
-    details: Extremely fast web build tool written in Rust
+    details: 用 Rust 编写的极快网页构建工具
     link: https://www.farmfe.org/
     icon:
       src: /features/farm.png
 
   - title: Rolldown
-    details: Fast Rust bundler for JavaScript with Rollup-compatible API
+    details: 用于 JavaScript 的快速 Rust 打包工具，具有兼容 Rollup 的 API
     link: https://rolldown.rs/
     icon:
       src: /features/rolldown.svg
 
-  - title: More
-    details: More supported bundlers...
+  - title: 更多
+    details: 更多支持的打包工具...
     link: /guide/#supported-hooks
     icon:
       src: /features/more.svg

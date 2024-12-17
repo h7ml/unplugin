@@ -3,23 +3,23 @@ aside: false
 lastUpdated: false
 ---
 
-# Plugin Conventions
+# 插件约定
 
-To have a better community and ecosystem, we encourage plugin authors to follow these conventions when creating unplugins.
+为了拥有一个更好的社区和生态系统，我们鼓励插件作者在创建 unplugin 时遵循以下约定。
 
-- Plugins powered by Unplugin should have a clear name with `unplugin-` prefix.
-- Include `unplugin` keyword in `package.json`.
-- To provide better DX, packages could export 2 kinds of entry points:
-  - Default export: the returned value of `createUnplugin` function
+- 由 Unplugin 驱动的插件应该具有清晰的名称，并以 `unplugin-` 前缀开头。
+- 在 `package.json` 中包含 `unplugin` 关键字。
+- 为了提供更好的开发体验，包可以导出两种类型的入口点：
+  - 默认导出：`createUnplugin` 函数返回的值
 
     ```ts
     import UnpluginFeature from 'unplugin-feature'
     ```
 
-  - Subpath exports: properties of the returned value of `createUnplugin` function for each bundler users
+  - 子路径导出：`createUnplugin` 函数返回值的属性供每个打包工具用户使用
 
     ```ts
     import VitePlugin from 'unplugin-feature/vite'
     ```
 
-  - Refer to [unplugin-starter](https://github.com/unplugin/unplugin-starter) for more details about this setup.
+  - 有关此设置的更多细节，请参考 [unplugin-starter](https://github.com/unplugin/unplugin-starter)。

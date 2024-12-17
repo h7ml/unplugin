@@ -2,14 +2,14 @@
 aside: false
 ---
 
-# Overview
+# 概述
 
-Here are a few unplugins maintained by the unplugin team, find more on [npm](https://www.npmjs.com/search?ranking=popularity&q=keywords%3Aunplugin).
+这里有一些由 unplugin 团队维护的 unplugin，更多请在 [npm](https://www.npmjs.com/search?ranking=popularity&q=keywords%3Aunplugin) 查找。
 
 <Repositories />
 
-::: info Join us!
+::: info 加入我们！
 
-We have started a [GitHub organization](https://github.com/unplugin) to host and collaborate on popular unplugins. You can go there to find more plugins maintained by the unplugin team or even join us with your own plugins!
+我们已成立一个 [GitHub 组织](https://github.com/unplugin)，以托管和合作开发流行的 unplugin。你可以在这里找到更多由 unplugin 团队维护的插件，甚至可以通过你自己的插件加入我们！
 
 :::

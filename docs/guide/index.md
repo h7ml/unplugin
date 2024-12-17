@@ -3,45 +3,45 @@ outline: deep
 lastUpdated: false
 ---
 
-# Getting Started
+# 入门指南
 
-## Overview
+## 概述
 
-**Unplugin** is a library that offers an unified plugin system for various build tools. It extends the excellent [Rollup plugin API](https://rollupjs.org/plugin-development/#plugins-overview) to serve as the standard plugin interface, and provides a compatibility layer based on the build tools employed.
+**Unplugin** 是一个为各种构建工具提供统一插件系统的库。它扩展了优秀的 [Rollup 插件 API](https://rollupjs.org/plugin-development/#plugins-overview)，作为标准插件接口，并提供了基于所使用构建工具的兼容层。
 
-**Unplugin** current supports:
+**Unplugin** 当前支持：
 
 - [Vite](https://vitejs.dev/)
 - [Rollup](https://rollupjs.org/)
 - [Webpack](https://webpack.js.org/)
 - [esbuild](https://esbuild.github.io/)
 - [Rspack](https://www.rspack.dev/)
-- [Rolldown](https://rolldown.rs/) <span style="color: #ca8a04"><strong>(⚠️ experimental)</strong></span>
+- [Rolldown](https://rolldown.rs/) <span style="color: #ca8a04"><strong>(⚠️ 实验性)</strong></span>
 - [Farm](https://www.farmfe.org/)
 
-## Trying It Online
+## 在线试用
 
-You can try **Unplugin** in your browser directly.
+您可以直接在浏览器中试用 **Unplugin**。
 
 [![open](/open_in_codeflow.svg)](https://stackblitz.com/~/github.com/yuyinws/unplugin-starter?file=src/index.ts)
 
-## Creating an Unplugin package
+## 创建 Unplugin 包
 
-### Templates
+### 模板
 
 - [unplugin/unplugin-starter](https://github.com/unplugin/unplugin-starter)
 - [sxzz/unplugin-starter](https://github.com/sxzz/unplugin-starter)
 
-Check repositories above for more details.
+查看上述仓库以获取更多详细信息。
 
-## Plugin Installation
+## 插件安装
 
-### Pre-requisites
+### 先决条件
 
-- Node.js 18.12.0 or later.
-- Webpack 5 or later, if you are using Webpack.
+- Node.js 18.12.0 或更高版本。
+- 如果您使用 Webpack，则需要 Webpack 5 或更高版本。
 
-### Install package
+### 安装包
 
 ::: code-group
 
@@ -63,7 +63,7 @@ bun add unplugin-starter -D
 
 :::
 
-### Bundler & Framework Integration
+### 构建工具与框架集成
 
 ::: code-group
 
@@ -191,7 +191,7 @@ export default defineConfig({
 })
 ```
 
-## Supported Hooks
+## 支持的 Hooks
 
 | Hook                                                                              |     Rollup      | Vite | Webpack |     esbuild     |     Rspack      | Farm | Rolldown |
 | --------------------------------------------------------------------------------- | :-------------: | :--: | :-----: | :-------------: | :-------------: | :--: | :------: |
@@ -206,37 +206,37 @@ export default defineConfig({
 | [`buildEnd`](https://rollupjs.org/plugin-development/#buildend)                   |       ✅        |  ✅  |   ✅    |       ✅        |       ✅        |  ✅  |    ✅    |
 | [`writeBundle`](https://rollupjs.org/plugin-development/#writebundle)<sup>4</sup> |       ✅        |  ✅  |   ✅    |       ✅        |       ✅        |  ✅  |    ✅    |
 
-::: details Notice
+::: details 注意
 
-1. Rollup and esbuild do not support using `enforce` to control the order of plugins. Users need to maintain the order manually.
-2. webpack's id filter is outside of loader logic; an additional hook is needed for better perf on webpack. In Rollup and Vite, this hook has been polyfilled to match the behaviors. See for the following usage examples.
-3. Although esbuild can handle both JavaScript and CSS and many other file formats, you can only return JavaScript in `load` and `transform` results.
-4. Currently, `writeBundle` is only serves as a hook for the timing. It doesn't pass any arguments.
-5. Rspack supports `resolveId` with a minimum required version of v1.0.0-alpha.1.
+1. Rollup 和 esbuild 不支持使用 `enforce` 来控制插件的顺序。用户需要手动维护顺序。
+2. webpack 的 ID 过滤器不在加载器逻辑之外；为了在 webpack 中获得更好的性能，需要额外的 hook。在 Rollup 和 Vite 中，这个 hook 已被 polyfill 以匹配行为。有关以下使用示例，请参阅。
+3. 虽然 esbuild 可以处理 JavaScript、CSS 和许多其他文件格式，但您只能在 `load` 和 `transform` 结果中返回 JavaScript。
+4. 当前，`writeBundle` 仅作为时机的 hook 使用。它不传递任何参数。
+5. Rspack 支持 `resolveId` 的最低版本为 v1.0.0-alpha.1。
    :::
 
-### Usage
+### 用法
 
 ```ts{12-14,16-18} twoslash
 import type { UnpluginFactory } from 'unplugin'
 import { createUnplugin } from 'unplugin'
 
 export interface Options {
-  // define your plugin options here
+  // 在此定义您的插件选项
 }
 
 export const unpluginFactory: UnpluginFactory<Options | undefined> = options => ({
   name: 'unplugin-starter',
-  // webpack's id filter is outside of loader logic,
-  // an additional hook is needed for better perf on webpack
+  // webpack 的 ID 过滤器不在加载器逻辑之外，
+  // 需要额外的 hook 来获得更好的性能
   transformInclude(id) {
     return id.endsWith('main.ts')
   },
-  // just like rollup transform
+  // 就像 rollup 转换
   transform(code) {
     return code.replace(/<template>/, '<template><div>Injected</div>')
   },
-  // more hooks coming
+  // 更多 hooks 即将到来
 })
 
 export const unplugin = /* #__PURE__ */ createUnplugin(unpluginFactory)
@@ -252,9 +252,9 @@ export const esbuildPlugin = unplugin.esbuild
 export const farmPlugin = unplugin.farm
 ```
 
-## Supported Context
+## 支持的上下文
 
-| Context                                                                               | Rollup | Vite | Webpack | esbuild | Rspack | Farm | Rolldown |
+| 上下文                                                                               | Rollup | Vite | Webpack | esbuild | Rspack | Farm | Rolldown |
 | ------------------------------------------------------------------------------------- | :----: | :--: | :-----: | :-----: | :----: | :--: | :------: |
 | [`this.parse`](https://rollupjs.org/plugin-development/#this-parse)                   |   ✅   |  ✅  |   ✅    |   ✅    |   ✅   |  ✅  |    ✅    |
 | [`this.addWatchFile`](https://rollupjs.org/plugin-development/#this-addwatchfile)     |   ✅   |  ✅  |   ✅    |   ❌    |   ✅   |  ✅  |    ✅    |
@@ -263,34 +263,34 @@ export const farmPlugin = unplugin.farm
 | [`this.warn`](https://rollupjs.org/plugin-development/#this-warn)                     |   ✅   |  ✅  |   ✅    |   ✅    |   ✅   |  ✅  |    ✅    |
 | [`this.error`](https://rollupjs.org/plugin-development/#this-error)                   |   ✅   |  ✅  |   ✅    |   ✅    |   ✅   |  ✅  |    ✅    |
 
-::: info Notice
+::: info 注意
 
-1. Currently, [`this.emitFile`](https://rollupjs.org/plugin-development/#thisemitfile) only supports the `EmittedAsset` variant.
+1. 当前，[`this.emitFile`](https://rollupjs.org/plugin-development/#thisemitfile) 仅支持 `EmittedAsset` 变体。
    :::
 
-## Nested Plugins
+## 嵌套插件
 
-**Unplugin** supports constructing multiple nested plugins to behave like a single one.
+**Unplugin** 支持构造多个嵌套插件，以便像单个插件一样工作。
 
-### Bundler Supported
+### 支持的构建工具
 
 |         Rollup         | Vite | Webpack | Rspack | esbuild | Farm | Rolldown |
 | :--------------------: | :--: | :-----: | :----: | :-----: | :--: | :------: |
 | ✅ `>=3.1`<sup>1</sup> |  ✅  |   ✅    |   ✅   |   ✅    |  ✅  |    ✅    |
 
-::: details Notice
+::: details 注意
 
-1. Rollup supports nested plugins since [v3.1.0](https://github.com/rollup/rollup/releases/tag/v3.1.0). Plugin author should ask users to have a Rollup version of `>=3.1.0` when using nested plugins. For single plugin format, **Unplugin** works for any version of Rollup.
+1. Rollup 自 [v3.1.0](https://github.com/rollup/rollup/releases/tag/v3.1.0) 以来支持嵌套插件。插件作者应该要求用户使用 `>=3.1.0` 版本的 Rollup。当使用单个插件格式时，**Unplugin** 对任何版本的 Rollup 均有效。
    :::
 
-### Usage
+### 用法
 
 ```ts twoslash
 import type { UnpluginFactory } from 'unplugin'
 import { createUnplugin } from 'unplugin'
 
 export interface Options {
-  // define your plugin options here
+  // 在此定义您的插件选项
 }
 
 export const unpluginFactory: UnpluginFactory<Options | undefined> = options => [
@@ -313,9 +313,9 @@ export const unplugin = /* #__PURE__ */ createUnplugin(unpluginFactory)
 export default unplugin
 ```
 
-## Bundler-Specific Logic
+## 构建工具特定逻辑
 
-While **Unplugin** provides compatible layers for some hooks, the functionality of it is limited to the common subset of the build's plugins capability. For more advanced bundler-specific usages, **Unplugin** provides an escape hatch for that.
+虽然 **Unplugin** 为某些 hooks 提供了兼容层，但它的功能限于构建插件能力的公共子集。对于更高级的构建工具特定用法，**Unplugin** 提供了逃生口。
 
 ### Hooks
 
@@ -324,7 +324,7 @@ import type { UnpluginFactory } from 'unplugin'
 import { createUnplugin } from 'unplugin'
 
 export interface Options {
-  // define your plugin options here
+  // 在此定义您的插件选项
 }
 
 export const unpluginFactory: UnpluginFactory<Options | undefined> = (
@@ -341,35 +341,34 @@ export const unpluginFactory: UnpluginFactory<Options | undefined> = (
       return id.endsWith('main.ts')
     },
     vite: {
-      // Vite plugin
+      // Vite 插件
       configureServer(server) {
-        // configure Vite server
+        // 配置 Vite 服务器
       },
     },
     rollup: {
-      // Rollup plugin
+      // Rollup 插件
     },
     rolldown: {
-      // Rolldown plugin
+      // Rolldown 插件
     },
     webpack(compiler) {
-      // Configure webpack compiler
+      // 配置 webpack 编译器
     },
     rspack(compiler) {
-      // Configure Rspack compiler
+      // 配置 Rspack 编译器
     },
     esbuild: {
-      // Change the filter of onResolve and onLoad
+      // 更改 onResolve 和 onLoad 的过滤器
       // onResolveFilter?: RegExp,
       // onLoadFilter?: RegExp,
-      // Tell esbuild how to interpret the contents. By default Unplugin tries to guess the loader
-      // from file extension (eg: .js -> "js", .jsx -> 'jsx')
+      // 告诉 esbuild 如何解释内容。默认情况下，Unplugin 尝试根据文件扩展名猜测加载器
       // loader?: (Loader | (code: string, id: string) => Loader)
-      // Or you can completely replace the setup logic
+      // 或者您可以完全替换设置逻辑
       // setup?: EsbuildPlugin.setup,
     },
     farm: {
-      // Farm plugin
+      // Farm 插件
     },
   }
 }
@@ -379,10 +378,10 @@ export const unplugin = /* #__PURE__ */ createUnplugin(unpluginFactory)
 export default unplugin
 ```
 
-### Plugins
+### 插件
 
-The package exports a set of functions in place of `createUnplugin` that allow for the creation of plugins for specific bundlers.
-Each of the function takes the same generic factory argument as `createUnplugin`.
+该包导出了一组函数以取代 `createUnplugin`，这些函数允许为特定构建工具创建插件。
+每个函数都采用与 `createUnplugin` 相同的泛型工厂参数。
 
 ```ts
 import {
@@ -402,4 +401,3 @@ const esbuildPlugin = createEsbuildPlugin(/* factory */)
 const webpackPlugin = createWebpackPlugin(/* factory */)
 const rspackPlugin = createRspackPlugin(/* factory */)
 const farmPlugin = createFarmPlugin(/* factory */)
-```
